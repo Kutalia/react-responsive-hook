@@ -1,22 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
 
+import useResponsive, { screenTypes } from './hooks/useResponsive';
+
 function App() {
+  const screenType = useResponsive();
+  console.log(screenType);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {screenType === screenTypes.MOBILE && <div>Show on mobile</div>}
+        {screenType === screenTypes.TABLET && <div>Show on tablet</div>}
+        {screenType === screenTypes.DESKTOP && <div>Show on desktop</div>}
+        {!screenType && <div>Show on a huge screen</div>}
       </header>
     </div>
   );
